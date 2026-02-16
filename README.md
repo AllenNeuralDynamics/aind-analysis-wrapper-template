@@ -16,7 +16,7 @@ The analysis wrapper:
 5. **Prevents** duplicate processing by checking if analysis has already been completed
 
 ### Environment Setup
-The steps below are needed to configure the analysis wrapper. Go to the `environment` tab in the capsule. Steps 1-3 are found under **`Environment Variables`**. Step 4 is found under **`Secrets`**.
+The steps below are needed to configure the analysis wrapper. Go to the `example.env` file.
 1. Set the **`DOCDB_COLLECTION`** to the project collection
 2. Set the **`CODEOCEAN_EMAIL`** 
 3. Replace the **`ANALYSIS_BUCKET`** with the path to the analysis bucket on S3.
@@ -24,7 +24,7 @@ The steps below are needed to configure the analysis wrapper. Go to the `environ
 5. Add any required packages needed for analysis
 
 ### Analysis Wrapper - User Defined Analysis Parameters
-To help facilitate tracking of analysis parameters for reproducibility, a user should define their own pydantic model in the analysis wrapper. Follow steps below. An example can be found in `/code/example_analysis_model.py`:
+To help facilitate tracking of analysis parameters for reproducibility, a user should define their own pydantic model in the analysis wrapper. Follow steps below. An example can be found in `/code/run_capsule.py`:
 
 1. Start by renaming the example analysis model to match user's custom model.
 2. Then add any fields that would be useful in aiding reproducibility of analysis. **The listed fields are just examples, not a requirement**. ***Recommended to add a field to tag the version of analysis run***. See [Analysis Metadata Tracking](#analysis-metadata-tracking).
