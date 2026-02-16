@@ -26,13 +26,13 @@ The steps below are needed to configure the analysis wrapper. Go to the `example
 ### Analysis Wrapper - User Defined Analysis Parameters
 To help facilitate tracking of analysis parameters for reproducibility, a user should define their own pydantic model in the analysis wrapper. Follow steps below. An example can be found in `/code/run_capsule.py`:
 
-1. Start by renaming the example analysis model to match user's custom model.
+1. Start by renaming the example analysis parameters model to match user's custom model.
 2. Then add any fields that would be useful in aiding reproducibility of analysis. **The listed fields are just examples, not a requirement**. ***Recommended to add a field to tag the version of analysis run***. See [Analysis Metadata Tracking](#analysis-metadata-tracking).
 3. Additionally, for any small numerical outputs and such - define these in the output model if needed. Larger files such as arrays and tables should be written to the results folder (See next section).
-4. Once this is done, be sure to replace **all references to `ExampleAnalysisSpecification` and `ExampleAnalysisOutputs`** in `run_capsule.py`. If no output model is needed, remove lines referencing **ExampleAnalysisOutputs** in **`run_analysis`** function.
+4. Once this is done, be sure to replace **all references to `ExampleAnalysisParameters` and `ExampleAnalysisOutputs`** in `run_capsule.py`. If no output model is needed, remove lines referencing **ExampleAnalysisOutputs** in **`run_analysis`** function.
 
 ### Running Analysis and Storing Output
-User defined analysis can be specified in the **`run_analysis`** function in `run_capsule.py`. An example of the input model passed in can be found in `/data/job_dict`. An example of analysis parameters that correspond to the example pydantic model can be found in `/data/analysis_parameters.json`. Modify the analysis parameters json for testing if needed, and **make sure the fields match those in the model defined**. Some other notes below:
+User defined analysis can be specified in the **`run_analysis`** function in `run_capsule.py`. An example of the input model passed in can be found in `/code/example_input/example_dispatch_job.json`.
 
 * **Users can also add an app panel for input arguments that are part of the analysis model**.
 
@@ -59,4 +59,4 @@ To intentionally rerun the **same** analysis on the same data:
 - **Not required** but adding a versioning field in the user defined pydantic model is **strongly recommended** for reproducibility and distinguishing between analysis runs.
 
 ### Testing Analysis Wrapper
-To test, a reproducible run can be executed. **When ready to run analysis and post results, be sure to set the dry run flag in the app panel to 0 so the results are posted. By default, dry run is enabled.**.
+To test and run at the pipeline level, a reproducible run needs to be executed. **When ready to run analysis and post results, be sure to set the dry run flag in the app panel to 0 so the results are posted. By default, dry run is enabled.**.
